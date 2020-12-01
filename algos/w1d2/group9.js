@@ -5,7 +5,7 @@ class SLL {
 
     // return true or false if this.head is null
     isEmpty() {
-        return this.head == null
+        return this.head != null
     }
 
     // add given node to the head, if it exists. return void

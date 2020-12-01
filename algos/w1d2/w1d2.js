@@ -40,12 +40,12 @@ mySLL.addToFront(new Node(4));
 mySLL.addToFront(new Node(6));
 
 
-var SLL = {
-    head: Node {
-        data: 4,
-        next: Node {
-            data: 6,
-            next: null
-        }
-    }
-}
+// var SLL = {
+//     head: Node {
+//         data: 4,
+//         next: Node {
+//             data: 6,
+//             next: null
+//         }
+//     }
+// }
