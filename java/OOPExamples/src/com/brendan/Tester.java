@@ -1,5 +1,7 @@
 package com.brendan;
 
+import java.util.ArrayList;
+
 public class Tester {
 
 	public static void main(String[] args) {
@@ -17,6 +19,9 @@ public class Tester {
 		ninja1.strike(ninja2);
 		
 		ninja2.readStats();
+		
+		ArrayList<String> example = new ArrayList<String>();
+	
 		
 	}
 
