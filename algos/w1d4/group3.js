@@ -1,4 +1,6 @@
 class SLL {
+    countNodes = 0;
+
     constructor() {
         this.head = null;
     }
@@ -9,10 +11,38 @@ class SLL {
     // consider the edge case if you have to delete the head node
     // consider the edge case your list is empty
     // consider the edge case that your list does not contain the val
-    delete(val) {}
+
+    delete(val) {
+        //check if node is empty
+        if (this.isEmpty()) {
+            console.log("list is empty- nothing to delete");
+            //check for val in head node
+        } else if (val == this.head.data) {
+            this.head = this.head.next;
+            console.log(val + " removed the head node");
+            this.countNodes--;
+            //check for val in each node by transversing through the sll
+        } else {
+            var runner = this.head;
+            while (runner.next != null) {
+                if (runner.next.data == val) {
+                    console.log(val + " was removed from list");
+                    runner.next = runner.next.next;
+                    this.countNodes--;
+                    return;
+                } else {
+                    runner = runner.next;
+                }
+            }
+            console.log("did not find " + val + " in list");
+        }
+    }
 
     // Return the total amount of nodes in the list
-    size() {}
+    size() {
+        console.log("there are/is currently " + this.countNodes + " node(s) in the SLL");
+        return this.countNodes;
+    }
 
     read() {
         var current = this.head; // set curret as the head, if it exists or not
@@ -30,7 +60,7 @@ class SLL {
         while (runner) {
 
             // return true if data === value
-            if (runner.data === value) {
+            if (runner.next.data === value) {
                 return true;
             }
             // otherwise advance the runner
@@ -47,6 +77,7 @@ class SLL {
         var removed = this.head; // save the head in a temp variable
         this.head = this.head.next; // move the head
         removed.next = null; // make removed no longer reference the list
+        this.countNodes--;
         return removed;
     }
 
@@ -60,12 +91,14 @@ class SLL {
     addToFront(node) {
         node.next = this.head;
         this.head = node;
+        this.countNodes++;
     }
 
     addDataToFront(data) {
         let node = new Node(data);
         node.next = this.head;
         this.head = node;
+        countNodes++;
     }
 }
 
@@ -81,16 +114,9 @@ myNewSLL.addToFront(new Node(5));
 myNewSLL.addToFront(new Node(22));
 myNewSLL.addToFront(new Node(17));
 
-
-var current = myNewSLL.head;
-// runner, temp
-
-// while (current) {
-//     console.log(current.data);
-
-//     if (current.next === null) {
-//         console.log("this is the last node");
-//     }
-
-//     current = current.next;
-// }
+myNewSLL.size();
+myNewSLL.delete(6);
+myNewSLL.delete(22);
+myNewSLL.delete(17);
+myNewSLL.read();
+myNewSLL.size();

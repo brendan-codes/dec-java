@@ -7,6 +7,7 @@ public class Ninja extends Person {
 	public Ninja(String n, int a, String s, float h) {
 		super(n, a, s, h);
 		this.setStrength(10);
+		System.out.println(this.getClass().getSimpleName());
 		// TODO Auto-generated constructor stub
 	}
 	

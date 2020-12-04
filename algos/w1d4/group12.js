@@ -9,10 +9,35 @@ class SLL {
     // consider the edge case if you have to delete the head node
     // consider the edge case your list is empty
     // consider the edge case that your list does not contain the val
-    delete(val) {}
+    delete(val) {
+        if (this.next == value) {
+            var remove = this.next;
+            this.next = this.next.next;
+            remove.next = null;
+            return;
+        }
+        if (this.head == value) {
+            remove = this.head;
+            this.head = this.head.next;
+            remove.next = null;
+            return;
+        }
+        if (this.head == null) {
+            return;
+        }
+        if (this.next != value) {
+            return;
+        }
+    }
 
     // Return the total amount of nodes in the list
-    size() {}
+    size(current) {
+        current = this.head;
+        if (current.next == null) {
+            return 0;
+        }
+        return 1 + size(current.next);
+    }
 
     read() {
         var current = this.head; // set curret as the head, if it exists or not

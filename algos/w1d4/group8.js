@@ -10,29 +10,29 @@ class SLL {
     // consider the edge case your list is empty
     // consider the edge case that your list does not contain the val
     delete(val) {
-        var current = this.head;
-        if(this.isEmpty()){
-            console.log("The SLL is empty")
-        }else if(!this.contains(val)){
-            console.log("The SLL does not contain this value");
-        }else if (current.data == val) {
-            this.removeFromFront();
-        }else {
-            while(current.next.data != val){
-                current = current.next;
+            var current = this.head;
+            if (this.isEmpty()) {
+                console.log("The SLL is empty")
+            } else if (!this.contains(val)) {
+                console.log("The SLL does not contain this value");
+            } else if (current.data == val) {
+                this.removeFromFront();
+            } else {
+                while (current.next.data != val) {
+                    current = current.next;
+                }
+                current.next = current.next.next;
             }
-            current.next = current.next.next;
         }
-    }
-    // Return the total amount of nodes in the list
+        // Return the total amount of nodes in the list
     size() {
         var count = 0;
         var current = this.head;
-        if(this.isEmpty()){
+        if (this.isEmpty()) {
             return count;
-        }else{
+        } else {
             count = 1;
-            while(current.next != null){
+            while (current.next != null) {
                 current = current.next;
                 count += 1;
             }

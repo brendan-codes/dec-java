@@ -67,8 +67,8 @@ class SLL {
     }
 
 
-        // .count() <--
-        // .length;
+    // .count() <--
+    // .length;
 
     read() {
         var current = this.head; // set curret as the head, if it exists or not

@@ -21,7 +21,6 @@ public class Tester {
 		ninja2.readStats();
 		
 		ArrayList<String> example = new ArrayList<String>();
-	
 		
 	}
 

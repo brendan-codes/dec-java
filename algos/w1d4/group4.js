@@ -17,18 +17,18 @@ class SLL {
     // }
 
     size() {
-		var nodeCount = 0
-		// find the first node(.head.)
+        var nodeCount = 0
+            // find the first node(.head.)
         Node current = this.head;
 
-        while(current != null) {
+        while (current != null) {
             // print it's value
             nodeCount++
             // and move on to it's next node.
             current = current.next
         }
         Console.log("There are " + nodeCount + " Nodes.")
-		return nodeCount
+        return nodeCount
     }
 
     read() {

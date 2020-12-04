@@ -18,11 +18,12 @@ class SLL {
 
         if (current.data === val) {
             this.head = current.next;
+            return;
         }
-        while (current) {
+        while (current.next) {
             if (current.next.data === val) {
                 current.next = current.next.next;
-                break;
+                return;
             }
         }
         console.log("Value not found!");
