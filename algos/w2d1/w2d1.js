@@ -105,6 +105,7 @@ class slStack {
 // you may only use public stack methods push pop peek isempty
 function countStack(stack) {
     let newStack = new slStack();
+
     let count = 0;
 
     while (!stack.isEmpty()) {
