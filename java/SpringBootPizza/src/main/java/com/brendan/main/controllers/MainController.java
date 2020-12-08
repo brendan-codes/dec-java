@@ -25,12 +25,19 @@ public class MainController {
 	
 	
 	@PostMapping("/process")
-//	@RequestMapping(path="/process", method=RequestMethod.POST)
+//	@RequestMapping(path="/process", method=RequestMethod.POST) // alternate annotation
 	public String processUser(@RequestParam(value="name") String name,
-							  @RequestParam(value="password") String password) {
+							  @RequestParam(value="password") String password,
+							  Model model) {
 		
 		System.out.println(name);
 		System.out.println(password);
+		
+		if(name.equals("Brendan")) {
+			
+		}
+		
+		
 		return "redirect:/";
 	}
 }
