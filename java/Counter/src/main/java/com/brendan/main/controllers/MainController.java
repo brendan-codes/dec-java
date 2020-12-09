@@ -25,16 +25,19 @@ public class MainController {
 		// this is a little change that will require a restart
 	}
 	
+	
 	@RequestMapping("/clear")
 	public String clear(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
 	}
 	
+	
 	@RequestMapping("/form")
 	public String showForm() {
 		return "form.jsp";
 	}
+	
 	
 	
 	@RequestMapping(path="/survey", method=RequestMethod.POST)
@@ -48,13 +51,13 @@ public class MainController {
 		return "redirect:/result";
 	}
 	
+	
 	@RequestMapping("/result")
 	public String result(HttpSession sesh, Model model) {
 		
 		Object username = sesh.getAttribute("username");
 		Object password = sesh.getAttribute("password");
-		
-		if(username == null) return "redirect:/form";
+	
 		
 		if(username == null) {
 			model.addAttribute("username", "");
