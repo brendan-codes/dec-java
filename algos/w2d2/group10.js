@@ -10,25 +10,64 @@ class Queue {
     }
 
     // add to the rear
-    enqueue(node){}
+    enqueue(node) {
+        if (this.length == 0) {
+            this.front = node;
+            this.rear = node;
+            this.length++;
+        } else {
+            this.rear.next = node;
+            this.rear = node;
+            this.length++;
+        }
+    }
 
     // remove from the front
-    dequeue(){}
+    dequeue() {
+        if (this.length == 0) {
+            return null;
+        } else if (this.front == this.rear) {
+            let temp = this.front
+            this.front = null;
+            this.rear = null;
+            this.length--;
+            return temp;
+        } else {
+            let temp = this.front;
+            this.front = this.front.next;
+            this.length--;
+            return temp;
+        }
+    }
 
     // check the front of the queue
-    checkFront(){}
+    checkFront() {
+        if (this.front == null) {
+            return null;
+        } else {
+            console.log(this.front);
+        }
+    }
 
     // return if empty
-    isEmpty(){}
+    isEmpty() {
+        if (this.length == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // return length
-    length(){}
+    length() {
+        return this.length;
+    }
 }
 
 // print every value in the queue
 // you may only use one queue or stack for additional storage
 // return the queue back to it's original order when you are done
-function readQueue(queue){}
+function readQueue(queue) {}
 
 
 // Stacks
@@ -134,11 +173,9 @@ function countStack(stack) {
     }
 
     while (!newStack.isEmpty()) {
-        stack.push(newStack.pop()); h
+        stack.push(newStack.pop());
+        h
     }
 
     return count;
 };
-
-
-

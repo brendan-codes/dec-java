@@ -1,6 +1,11 @@
 // Queue
 // FIFO (First in, first out)
-
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
 
 class Queue {
     constructor() {
@@ -10,26 +15,90 @@ class Queue {
     }
 
     // add to the rear
-    enqueue(node){}
+    enqueue(node) {
+        if (this.isEmpty()) {
+            this.front = node;
+            this.rear = node;
+        } else {
+            this.rear.next = node;
+            this.rear = node;
+        }
+        this.length++;
+    }
 
     // remove from the front
-    dequeue(){}
+    dequeue() {
+        if (this.isEmpty()) {
+            return null;
+        }
+        let removed = this.front;
+        if (this.front == this.rear) {
+            this.front = null;
+            this.rear = null;
+        } else {
+            this.front = this.front.next;
+        }
+        this.length--;
+        removed.next = null;
+        return removed;
+    }
 
     // check the front of the queue
-    checkFront(){}
+    checkFront() {
+        if (this.isEmpty()) {
+            return null;
+        } else {
+            return this.front.data;
+        }
+    }
 
     // return if empty
-    isEmpty(){}
+    isEmpty() {
+        return this.front === null;
+    }
 
     // return length
-    length(){}
+    myLength() {
+        return this.length;
+    }
 }
 
 // print every value in the queue
 // you may only use one queue or stack for additional storage
 // return the queue back to it's original order when you are done
-function readQueue(queue){}
 
+
+
+
+
+let myQueue = new Queue();
+let a = new Node(7);
+let b = new Node(3);
+let c = new Node(5);
+let d = new Node(23);
+console.log(myQueue.isEmpty());
+myQueue.enqueue(a);
+myQueue.enqueue(b);
+myQueue.enqueue(c);
+myQueue.enqueue(d);
+console.log(myQueue.isEmpty());
+// console.log(myQueue.dequeue().data)
+console.log(myQueue.myLength());
+console.log(myQueue.checkFront());
+
+function readQueue(queue) {
+    let newQueue = new Queue();
+    while (queue.front != null) {
+        let temp = queue.dequeue()
+        newQueue.enqueue(temp);
+        console.log(temp.data)
+    }
+    while (newQueue.front != null) {
+        queue.enqueue(newQueue.dequeue());
+    }
+    return queue;
+}
+readQueue(myQueue);
 
 // Stacks
 
@@ -134,11 +203,9 @@ function countStack(stack) {
     }
 
     while (!newStack.isEmpty()) {
-        stack.push(newStack.pop()); h
+        stack.push(newStack.pop());
+        h
     }
 
     return count;
 };
-
-
-

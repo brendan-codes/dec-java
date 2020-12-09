@@ -9,26 +9,63 @@ class Queue {
         this.length = 0;
     }
 
+    // what if the queue is empty?
+    // what if it's the last node in the queue?
+
     // add to the rear
-    enqueue(node){}
+    enqueue(node) {
+        if (this.isEmpty()) {
+            this.front = node;
+            this.rear = node;
+            this.length++;
+        } else {
+            this.rear.next = node;
+            this.rear = node;
+            this.length++;
+        }
+    }
 
     // remove from the front
-    dequeue(){}
+    dequeue() {
+        if (this.length == 1) {
+            var temp = this.front;
+            this.front = null;
+            this.rear = null;
+            this.length--;
+            return temp;
+        } else {
+            var temp = this.front;
+            this.front = this.front.next;
+            temp.next = null;
+            this.length--;
+            return temp;
+        }
+    }
 
     // check the front of the queue
-    checkFront(){}
+    checkFront() {
+        return this.front;
+    }
 
     // return if empty
-    isEmpty(){}
+    isEmpty() {
+        if (this.length == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // return length
-    length(){}
+    length() {
+        return this.length;
+    }
 }
 
 // print every value in the queue
 // you may only use one queue or stack for additional storage
 // return the queue back to it's original order when you are done
-function readQueue(queue){}
+function readQueue(queue) {}
 
 
 // Stacks
@@ -68,6 +105,14 @@ class Node {
     constructor(data) {
         this.data = data;
         this.next = null;
+    }
+}
+
+class DLNode {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
     }
 }
 
@@ -134,11 +179,22 @@ function countStack(stack) {
     }
 
     while (!newStack.isEmpty()) {
-        stack.push(newStack.pop()); h
+        stack.push(newStack.pop());
+        h
     }
 
     return count;
 };
 
 
-
+var q1 = new Queue();
+console.log(q1.isEmpty());
+q1.enqueue(new Node(5));
+console.log(q1.checkFront().data);
+q1.enqueue(new Node(6));
+q1.enqueue(new Node(7));
+q1.enqueue(new Node(8));
+q1.enqueue(new Node(9));
+console.log(q1.dequeue().data);
+console.log(q1.checkFront().data);
+console.log("length is: " + q1.length);

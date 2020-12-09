@@ -1,57 +1,3 @@
-var SLL = {
-    head: {
-        data: 7,
-        next: {
-            data: 8,
-            next: {
-                data: 9,
-                next: {
-                    data: 22,
-                    next: {
-                        data: 55,
-                        next: {
-                            data: 66,
-                            next: {
-                                data: 99,
-                                next: {
-                                    data: 202,
-                                    next: null
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-// head -> 7 -> 8 -> 9 -> 22 -> 55 -> 66 -> 99 -> 202 -> null
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Queue
 // FIFO (First in, first out)
 
@@ -63,26 +9,81 @@ class Queue {
         this.length = 0;
     }
 
+    // what if the queue is empty?
+    // what if it's the last node in the queue?
+
     // add to the rear
-    enqueue(node){}
+    enqueue(node) {
+        if (this.rear === null) { // if rear is null, list is empty
+            this.rear = node;
+            this.front = node;
+        } else { // otherwise add to rear
+            this.rear.next = node;
+            this.rear = node;
+        }
+        this.length++;
+    }
 
     // remove from the front
-    dequeue(){}
+    dequeue() {
+        if (this.front === null) {
+            return null; // if empty return nothing
+        };
+        if (this.front === this.rear) {
+            this.rear = null;
+        };
+        let node = this.front;
+        this.front = node.next;
+        node.next = null;
+        this.length--;
+        return node;
+    }
 
     // check the front of the queue
-    checkFront(){}
+    checkFront() {
+        return this.front ? this.front.data : null;
+    }
 
     // return if empty
-    isEmpty(){}
+    isEmpty() {
+        return this.front === null;
+    }
 
     // return length
-    length(){}
+    length() {
+        return this.length;
+    }
 }
 
 // print every value in the queue
 // you may only use one queue or stack for additional storage
 // return the queue back to it's original order when you are done
-function readQueue(queue){}
+function readQueue(queue) {
+    var tempQueue = new Queue();
+
+    while (!queue.isEmpty()) {
+        var tempNode = queue.dequeue();
+        console.log(tempNode.data);
+        tempQueue.enqueue(tempNode);
+    }
+
+    while (!tempQueue.isEmpty()) {
+        queue.enqueue(tempQueue.dequeue());
+    }
+
+    return queue;
+}
+
+function readQueue2(queue) {
+    var length = queue.length();
+
+    while (length) {
+        var node = queue.dequeue();
+        console.log(node.data);
+        queue.enqueue(node);
+        length--;
+    }
+}
 
 
 // Stacks
@@ -122,6 +123,14 @@ class Node {
     constructor(data) {
         this.data = data;
         this.next = null;
+    }
+}
+
+class DLNode {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
     }
 }
 
@@ -188,11 +197,9 @@ function countStack(stack) {
     }
 
     while (!newStack.isEmpty()) {
-        stack.push(newStack.pop()); h
+        stack.push(newStack.pop());
+        h
     }
 
     return count;
 };
-
-
-

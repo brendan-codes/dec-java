@@ -1,0 +1,10 @@
+public class Mammal {
+	int energyLevel = 100;
+	
+	public void displayEnergy() {
+		System.out.println("Gorilla energy level is: "+energyLevel);
+		
+	}
+	
+}
+    

@@ -10,25 +10,27 @@ class Queue {
     }
 
     // add to the rear
-    enqueue(node){}
+    enqueue(node) {
+
+    }
 
     // remove from the front
-    dequeue(){}
+    dequeue() {}
 
     // check the front of the queue
-    checkFront(){}
+    checkFront() {}
 
     // return if empty
-    isEmpty(){}
+    isEmpty() {}
 
     // return length
-    length(){}
+    length() {}
 }
 
 // print every value in the queue
 // you may only use one queue or stack for additional storage
 // return the queue back to it's original order when you are done
-function readQueue(queue){}
+function readQueue(queue) {}
 
 
 // Stacks
@@ -134,11 +136,9 @@ function countStack(stack) {
     }
 
     while (!newStack.isEmpty()) {
-        stack.push(newStack.pop()); h
+        stack.push(newStack.pop());
+        h
     }
 
     return count;
-};
-
-
-
+}; == nulll

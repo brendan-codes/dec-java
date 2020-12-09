@@ -9,27 +9,82 @@ class Queue {
         this.length = 0;
     }
 
+    // what if the queue is empty?
+    // what if it's the last node in the queue?
+
     // add to the rear
-    enqueue(node){}
+    enqueue(node) {
+        if (this.length == 0) {
+            this.front = node;
+            this.rear = node;
+            this.length = 1;
+        } else {
+            this.rear.next = node;
+            this.rear = node;
+        }
+        this.length += 1;
+    }
 
     // remove from the front
-    dequeue(){}
+    dequeue() {
+        if (this.length == 0) {
+            return null;
+        } else if (this.length == 1) {
+            var temp = this.front;
+            this.rear.next = null;
+            this.front = null;
+            this.rear = null;
+            this.length = 0;
+            return temp;
+        } else {
+            var temp = this.front;
+            this.front = this.front.next;
+            temp.next = null;
+            this.length -= 1;
+            return temp;
+        }
+
+    }
 
     // check the front of the queue
-    checkFront(){}
+    checkFront() {
+        if (this.length == 0) {
+            return null;
+        } else {
+            return this.front.data;
+        }
+    }
 
     // return if empty
-    isEmpty(){}
+    isEmpty() {
+        if (this.length == 0) {
+            return null;
+        }
+    }
 
     // return length
-    length(){}
+    length() {
+        return this.length;
+    }
 }
 
 // print every value in the queue
 // you may only use one queue or stack for additional storage
 // return the queue back to it's original order when you are done
-function readQueue(queue){}
+function readQueue(queue) {
+    let newQueue = new queue();
+    count = 0;
 
+    while (queue.length != 0) {
+        console.log(queue.front.data);
+        newQueue.enqueue((queue.dequeue()));
+        count++;
+    }
+    while (newQueue.length != 0) {
+        queue.enqueue((newQueue.dequeue()));
+    }
+
+}
 
 // Stacks
 
@@ -134,11 +189,9 @@ function countStack(stack) {
     }
 
     while (!newStack.isEmpty()) {
-        stack.push(newStack.pop()); h
+        stack.push(newStack.pop());
+        h
     }
 
     return count;
 };
-
-
-
