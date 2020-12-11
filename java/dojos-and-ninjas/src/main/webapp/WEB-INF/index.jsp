@@ -12,12 +12,16 @@
 <body>
 	<h1>Hello World!</h1>
 	
-	<a href="/createDojo">create a new dojo!</a>
+	<a href="/createDojo">create a new dojo!</a> | <a href="/createNinja">create a new Ninja!</a>
 	
 	<hr>
 	
 	<c:forEach items="${dojos}" var="dojo">
-		<p><c:out value="${dojo.name}"></c:out></p>
+		<h3><c:out value="${dojo.name}"></c:out></h3>
+		<c:forEach items="${dojo.ninjas}"  var="nin">
+			<p><c:out value="${nin.firstName}"></c:out></p>
+		</c:forEach>
+		<hr />
 	</c:forEach>
 
 </body>
