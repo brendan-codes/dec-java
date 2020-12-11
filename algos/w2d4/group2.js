@@ -1,13 +1,43 @@
 // using only one extra stack for storage, check if a given stack is sorted
 // return the stack back to it's original order when you are done
 // assume node.data are integers
-function isStackSorted(stack) {}
+function isStackSorted(stack) {
+    // create new stack
+    let newStack = new slStack();
+    console.log("new stack created");
+    // set result to default true
+    let result = true;
+    // while stack is not empty- pop, compare, push to new stack
+    while (!stack.isEmpty()) {
+        var node = stack.pop();
+        console.log("node: " + node.data)
+        if (node > stack.peek.data) {
+            result = false;
+            stack.push(node);
+            break;
+        } else {
+            newStack.push(node);
+        }
+    }
+    // while new stack not empty, push to stack
+    while (!newStack.isEmpty()) {
+        var node = newStack.pop();
+        stack.push(node);
+    }
+
+    return result;
+}
 
 // bonus
 // given two queues, return the one with the greater sum.
 // return the queues to their original order
 // assume node.data are integers
 function greaterOfTwoQueues(queue1, queue2) {}
+
+
+
+
+
 
 
 // queue: isPalindrome
@@ -38,22 +68,22 @@ function isPalindrome(queue) {
     return palindrome;
 }
 
-let myQueue = new Queue();
-myQueue.enqueue(1);
-myQueue.enqueue(2);
-myQueue.enqueue(3);
-myQueue.enqueue(2);
-myQueue.enqueue(1);
+// let myQueue = new Queue();
+// myQueue.enqueue(1);
+// myQueue.enqueue(2);
+// myQueue.enqueue(3);
+// myQueue.enqueue(2);
+// myQueue.enqueue(1);
 
-let myOtherQueue = new Queue();
-myOtherQueue.enqueue(1);
-myOtherQueue.enqueue(40);
-myOtherQueue.enqueue(3);
-myOtherQueue.enqueue(2);
-myOtherQueue.enqueue(1);
+// let myOtherQueue = new Queue();
+// myOtherQueue.enqueue(1);
+// myOtherQueue.enqueue(40);
+// myOtherQueue.enqueue(3);
+// myOtherQueue.enqueue(2);
+// myOtherQueue.enqueue(1);
 
-console.log(isPalindrome(myQueue)); // true
-console.log(isPalindrome(myOtherQueue)); // false
+// console.log(isPalindrome(myQueue)); // true
+// console.log(isPalindrome(myOtherQueue)); // false
 
 class Queue {
     constructor() {
@@ -182,7 +212,9 @@ class slStack {
         this.top = this.top.next;
         removed.next = null;
         this.length--;
-
+        if (this.length == 0) {
+            this.head = null;
+        }
         return removed;
     }
 
@@ -221,8 +253,16 @@ function countStack(stack) {
 
     while (!newStack.isEmpty()) {
         stack.push(newStack.pop());
-        h
     }
 
     return count;
 };
+
+
+// #### TESTING AREA ####
+
+let myStack = new slStack();
+myStack.push(new Node(3));
+myStack.push(new Node(2));
+myStack.push(new Node(1));
+console.log(isStackSorted(myStack));

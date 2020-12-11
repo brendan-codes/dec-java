@@ -13,14 +13,15 @@ import com.brendan.main.services.BookService;
 
 @RestController
 public class BookApi {
+	
     private final BookService bookService;
+    
     public BookApi(BookService bookService){
         this.bookService = bookService;
     }
     
     @RequestMapping("/api/books")
     public List<Book> index() {
-    	// ???
         return bookService.allBooks();
     }
     
@@ -30,7 +31,7 @@ public class BookApi {
     				   @RequestParam(value="language") String lang, 
     				   @RequestParam(value="pages") Integer numOfPages) {
         Book book = new Book(title, desc, lang, numOfPages);
-        return bookService.createBook(book);
+        return bookService.updateBook(book);
     }
     
     @RequestMapping("/api/books/{id}")
