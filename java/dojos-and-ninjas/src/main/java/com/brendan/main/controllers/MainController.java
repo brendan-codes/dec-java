@@ -57,7 +57,13 @@ public class MainController {
 		if(result.hasErrors()) {
 			return "newNinja.jsp";
 		}
-		System.out.println(ninja.getDojo().getName());
+		
+		if(ninja.getDojo().getNinjas().size() > 10) {
+			// do not add to db
+		}else {
+			// do add to db
+		}
+
 		ninjaService.save(ninja);
 		return "redirect:/";
 	}
