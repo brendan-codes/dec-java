@@ -1,6 +1,7 @@
 package com.brendan.main.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="ninjas")
@@ -34,9 +37,14 @@ public class Ninja {
     @JoinColumn(name="dojo_id")
     private Dojo dojo;
     
+    @OneToMany(mappedBy="master", fetch = FetchType.LAZY)
+    @Size(max=5)
+    private List<Dojo> schools;
+    
     public Ninja() {
         
     }
+    
 
 	public Long getId() {
 		return id;

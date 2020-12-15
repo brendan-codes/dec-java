@@ -1,5 +1,7 @@
 package com.brendan.main.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.brendan.main.models.Dojo;
 import com.brendan.main.models.Ninja;
@@ -18,7 +20,7 @@ import com.brendan.main.services.NinjaService;
 
 @Controller
 public class MainController {
-	
+		
 	@Autowired
 	private DojoService dojoService;
 	
@@ -48,21 +50,23 @@ public class MainController {
 	
 	@GetMapping("/createNinja")
 	public String showNinjaCreate(@ModelAttribute("ninja") Ninja ninja, Model model) {
-		model.addAttribute("dojos", dojoService.allDojos());
+		List<Dojo> myDojos = dojoService.allDojos();		
+		
+		model.addAttribute("dojos", myDojos);
 		return "newNinja.jsp";
 	}
 	
 	@PostMapping("/createNinja")
-	public String createNinja(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result) {
+	public String createNinja(@Valid @ModelAttribute("ninja") Ninja ninja, BindingResult result, RedirectAttributes redirectAttributes) {
 		if(result.hasErrors()) {
 			return "newNinja.jsp";
 		}
 		
-		if(ninja.getDojo().getNinjas().size() > 10) {
-			// do not add to db
-		}else {
-			// do add to db
+		if(ninja.getDojo().getNinjas().size() > 3) {
+			redirectAttributes.addFlashAttribute("errs", "too many ninjas!");
+			return "redirect:/createNinja";
 		}
+
 
 		ninjaService.save(ninja);
 		return "redirect:/";

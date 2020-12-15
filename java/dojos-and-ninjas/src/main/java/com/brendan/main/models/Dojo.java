@@ -9,8 +9,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 
 @Entity
 @Table(name="dojos")
@@ -29,6 +32,11 @@ public class Dojo {
     
     @OneToMany(mappedBy="dojo", fetch = FetchType.LAZY)
     private List<Ninja> ninjas;
+    
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="master_id")
+    private Ninja master;
     
     public Dojo() {
         

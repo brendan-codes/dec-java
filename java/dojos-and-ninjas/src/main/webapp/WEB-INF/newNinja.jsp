@@ -36,6 +36,7 @@
 			<p>Dojo:</p>
 			<form:label path="dojo"></form:label>
 			<form:errors path="dojo"></form:errors>
+			<c:out value="${errs}"></c:out>
 			<form:select path="dojo">
 				<option value="" disabled selected>Select a team!</option>
 				<c:forEach items="${dojos}" var="dojo">
