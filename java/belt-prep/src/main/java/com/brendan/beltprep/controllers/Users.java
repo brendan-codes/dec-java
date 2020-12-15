@@ -51,7 +51,11 @@ public class Users {
     }
     
     @RequestMapping(value="/login", method=RequestMethod.POST)
-    public String loginUser(@RequestParam("email") String email, @RequestParam("password") String password, Model model, HttpSession session, RedirectAttributes flashMessage) {
+    public String loginUser(@RequestParam("email") String email, 
+    						@RequestParam("password") String password, 
+    						Model model, 
+    						HttpSession session, 
+    						RedirectAttributes flashMessage) {
         // if the user is authenticated, save their user id in session
         // else, add error messages and return the login page
     	if(userService.authenticateUser(email, password)) {
