@@ -1,12 +1,17 @@
 package com.brendan.beltprep.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -31,6 +36,13 @@ public class User {
     
     @Transient
     private String passwordConfirmation;
+    
+    @OneToMany(mappedBy="creator", fetch=FetchType.LAZY)
+    private List<Team> teams;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="team_id")
+    private Team currentTeam;
     
     @Column(updatable=false)
     private Date createdAt;
@@ -110,6 +122,31 @@ public class User {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	
+
+
+	public List<Team> getTeams() {
+		return teams;
+	}
+
+
+
+	public void setTeams(List<Team> teams) {
+		this.teams = teams;
+	}
+
+
+
+	public Team getCurrentTeam() {
+		return currentTeam;
+	}
+
+
+
+	public void setCurrentTeam(Team currentTeam) {
+		this.currentTeam = currentTeam;
 	}
 
 

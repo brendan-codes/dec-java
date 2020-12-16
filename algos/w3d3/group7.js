@@ -17,6 +17,63 @@ class DLList {
 
     // == Main Methods ==
 
+    // return true or false if value exists
+    exists(value) {
+        var runner = this.head;
+        var isHere = false;
+
+        for (var i = 0; i < this.length; i++) {
+            if (runner.data == value) {
+                isHere = true;
+                return isHere;
+            }
+            runner = runner.next;
+        }
+
+        return isHere;
+    }
+
+    // reverse a doubly linked list
+    reverse() {
+        //switch all the pointers node.prev to node.next and vice versa
+        //switch this.head and this.next
+        var current = this.head;
+        var tempHead = this.head;
+
+        while (current.next != null) {
+            var temp = current.next;
+            current.next = current.prev;
+            current.prev = temp;
+            current = temp;
+        }
+
+        this.head = this.tail;
+        this.tail = tempHead;
+
+        return;
+    }
+
+    // return true of false if the current DLL is a palindrome
+    checkPalindrome() {
+        //DLL -- this.head --- 3  -- 4 -- 4 -- 3 --- this.tail ---
+        var headRunner = this.head;
+        var tailRunner = this.tail;
+
+        if (this.length == 0) {
+            return null;
+        }
+
+        while (headRunner != tailRunner || tailRunner != this.head) {
+            if (headRunner.data != tailRunner.data) {
+                return false;
+            };
+            headRunner = headRunner.next;
+            tailRunner = tailRunner.prev;
+        }
+
+        return true;
+    }
+
     // remove and return the first node with data === val, if it exists
     removeVal(val) {
         var runner = this.head;
@@ -167,3 +224,16 @@ class DLList {
     // pop from head
     removeHead() {}
 }
+
+var testDLL = new DLList();
+testDLL.addHead(new DLLNode(3));
+testDLL.addHead(new DLLNode(4));
+testDLL.addHead(new DLLNode(5));
+
+var testDLL2 = new DLList();
+testDLL2.addHead(new DLLNode(3));
+testDLL2.addHead(new DLLNode(4));
+testDLL2.addHead(new DLLNode(3));
+
+console.log(testDLL.checkPalindrome());
+console.log(testDLL2.checkPalindrome());

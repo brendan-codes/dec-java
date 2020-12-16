@@ -1,5 +1,6 @@
 package com.brendan.beltprep.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -21,6 +22,10 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	public List<User> allUsers(){
+		return userRepository.findAll();
+	}
     
     // register user and hash their password
     public User registerUser(User user) {
@@ -29,6 +34,10 @@ public class UserService {
         user.setPassword(hashed);
         
         return userRepository.save(user);
+    }
+    
+    public User updateUser(User user) {
+    	return userRepository.save(user);
     }
     
     

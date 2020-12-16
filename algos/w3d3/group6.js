@@ -17,6 +17,50 @@ class DLList {
 
     // == Main Methods ==
 
+    // return true or false if value exists
+    exists(value) {
+        var runner = this.head;
+        while (runner || runner.data != value) {
+            runner = runner.next;
+        }
+        if (runner) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // reverse a doubly linked list
+    reverse() {
+        if (this.isEmpty) {
+            return null;
+        }
+        var runner = this.head;
+        this.head = this.tail;
+        this.tail = runner
+        while (runner) {
+            var temp = runner.prev;
+            runner.prev = runner.next;
+            runner.next = temp;
+            runner = runner.prev;
+        }
+    }
+
+    // return true of false if the current DLL is a palindrome
+    checkPalindrome() {
+        var runner1 = this.head;
+        var runner2 = this.tail;
+        for (var i = 1; i <= this.length / 2; i++) {
+            if (runner1.data == runner2.data) {
+                runner1 = runner1.next;
+                runner2 = runner2.prev;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
     // remove and return the first node with data === val, if it exists
     removeVal(val) {
         var runner = this.head;

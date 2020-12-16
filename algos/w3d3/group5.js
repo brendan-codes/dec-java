@@ -17,7 +17,82 @@ class DLList {
 
     // == Main Methods ==
 
-    // remove and return the first node with data === val, if it exists
+    // return true or false if value exists
+    exists(value) {
+        if (!this.head || this.length === 0) {
+            return null;
+        }
+
+        let currentNode = this.head;
+        while (currentNode.next !== null) {
+            if (currentNode.data == value) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // reverse a doubly linked list
+    reverse() {
+        if (this.length === 0) {
+            return null;
+        }
+
+        let currentNode = this.head;
+        while (currentNode !== null) {
+            temp = currentNode.next;
+            currentNode.next = currentNode.prev;
+            currentNode.prev = temp;
+            currentNode = currentNode.next;
+        }
+    }
+
+    reverse2() {
+        if (this.length === 0) {
+            return null;
+        }
+
+        let currentNode = this.head;
+        while (currentNode) {
+            let temp = currentNode.next;
+            currentNode.next = currentNode.prev
+            currentNode.prev = temp;
+            currentNode = temp;
+        }
+
+        let temp = this.head;
+        this.head = this.tail;
+        this.tail = temp;
+    }
+
+    // return true of false if the current DLL is a palindrome
+    checkPalindrome() {
+            let isPalindrome = true;
+
+            if (this.length == 1) {
+                return isPalindrome;
+            }
+
+            if (!this.head || this.length == 0) {
+                return null;
+            }
+
+            let leftNode = this.head;
+            let rightNode = this.tail;
+
+            while (leftNode.next != rightNode.prev) {
+                if (leftNode.data == rightNode.data) {
+                    leftNode = leftNode.next;
+                    rightNode = rightNode.prev;
+                } else {
+                    isPalindrome = false;
+                }
+            }
+
+            return isPalindrome;
+        }
+        // remove and return the first node with data === val, if it exists
     removeVal(val) {
         var runner = this.head;
 

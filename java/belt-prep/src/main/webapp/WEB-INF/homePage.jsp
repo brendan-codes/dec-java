@@ -11,6 +11,6 @@
 </head>
 <body>
 	<h1>Welcome, <c:out value="${user.email}" /></h1>
-	<a href="/logout">Logout</a>
+	<a href="/createTeam">Create Team</a>|<a href="/logout">Logout</a>
 </body>
 </html>

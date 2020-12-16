@@ -17,6 +17,15 @@ class DLList {
 
     // == Main Methods ==
 
+    // return true or false if value exists
+    exists(value) {}
+
+    // reverse a doubly linked list
+    reverse() {}
+
+    // return true of false if the current DLL is a palindrome
+    checkPalindrome() {}
+
     // remove and return the first node with data === val, if it exists
     removeVal(val) {
         var runner = this.head;

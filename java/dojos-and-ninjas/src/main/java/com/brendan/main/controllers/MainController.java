@@ -67,6 +67,9 @@ public class MainController {
 			return "redirect:/createNinja";
 		}
 
+//		Dojo thisDojo = dojoService.findById(dojoId);
+//		thisDojo.getNinjas().add(newNinja);
+//		dojoService.save(thisDojo);
 
 		ninjaService.save(ninja);
 		return "redirect:/";
